@@ -11,7 +11,7 @@ The MADDPG algorithm is a general-purpose multi-agent learning algorithm that:
   2) Does not assume a differentiable model of the environment dynamics or any particular structure on the communication method between agents.
   3) Is applicable not only to cooperative interaction but to competitive or mixed interaction involving both physical and communicative behavior. 
   
-
+The MADDPG algorithm accomplishes those features by adopting the framework of centralized training with decentralized execution. It uses extra information to ease training, so long as this information is not used at test time. It is unnatural to do this with Q-learning, as the Q function generally cannot contain different information at training and test time. Thus, the MADDPG algorithm is a simple extension of actor-critic policy gradient methods where the critic is augmented with extra information about the policies of other agents.
 
 
 
