@@ -1,4 +1,5 @@
-# Multi-Agent Reinforcement Learning: Collaboration and Competition
+# Multi-Agent Reinforcement Learning: 
+# Collaboration and Competition
 
 
 ## 1. Learning Algorithm
