@@ -23,6 +23,7 @@ Because the MADDPG algorithm is a multi-agent extension of the [Deep Determinist
 One of the most important features of the MADDPG algorithm is that each critic receives the actions and state observations from all agents as inputs. This extra information enables **centralized training with decentralized execution**. It utilizes extra information to ease training, so long as this information is not used at test time. It is unnatural to do this with Q-learning, as the Q function generally cannot contain different information at training and test time. Thus, the MADDPG algorithm is a simple extension of actor-critic policy gradient methods where the critic is augmented with extra information about the policies of other agents.
 
 ### Hyperparameters
+The final hyperparameters are as follows:
 ```
 LEARN_EVERY = 1         # Learning - timestep interval
 LEARN_NUM = 1           # Learning - number of learning passes
@@ -46,5 +47,5 @@ Both the actor and critic networks have two fully connected hidden layers, the f
 <img src="maddpg_plot.png" width="70%"/>
 
 ## Ideas for Future Work
-Other algorithms such as [Asynchronous Advantage Actor-Critic (A3C)](https://arxiv.org/abs/1611.02247), [Advantage Actor-Critic (A2C)](https://openai.com/blog/baselines-acktr-a2c/), or [Generalized Advantage Estimation (GAE)](https://arxiv.org/abs/1506.02438) should be explored.
+The MADDPG algorithm required many iterations with hyperparameter tweaking. This is becasue stochasticity seems to play a major role in success/failure of convergence in my implementation. In addition, even in in the successful hyperparameter set, the number of episodes required to solve the environment remains high (>1500). To address those issues, I would like to implement Prioritized Experience Replay. 
 
