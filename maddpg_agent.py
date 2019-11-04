@@ -18,9 +18,9 @@ BUFFER_SIZE = int(1e6)  # Replay Buffer - buffer size
 TAU = 1e-3              # Soft Update - target parameters
 BATCH_SIZE = 128        # Batch Normalization - minibatch size
 OU_SIGMA = 0.2          # Exploration - Ornstein-Uhlenbeck noise parameter, volatility
-OU_THETA = 0.15         # Exploration - Ornstein-Uhlenbeck noise parameter, speed of mean reversion
+OU_THETA = 0.12         # Exploration - Ornstein-Uhlenbeck noise parameter, speed of mean reversion
 EPSILON = 1.0           # Exploration - initial value for epsilon in noise decay process in Agent.act()
-EPSILON_DECAY = 1e-4    # Exploration - decay rate for noise process
+EPSILON_DECAY = 1e-6    # Exploration - decay rate for noise process
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
