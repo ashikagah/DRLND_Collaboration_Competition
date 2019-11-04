@@ -1,6 +1,6 @@
-# Multi-Agent Reinforcement Learning: 
 # Collaboration and Competition
 
+<img src="tennis.png" width="70%" />
 
 ## 1. Learning Algorithm
 I implemented a Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm based on [Lowe et al.](https://arxiv.org/abs/1706.02275)
