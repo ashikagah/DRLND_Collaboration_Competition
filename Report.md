@@ -28,16 +28,15 @@ The final hyperparameters are as follows:
 LEARN_EVERY = 1         # Learning - timestep interval
 LEARN_NUM = 1           # Learning - number of learning passes
 GAMMA = 0.99            # Learning - discount factor
-LR_ACTOR = 1e-3         # Learning - learning rate of the actor
-LR_CRITIC = 1e-3        # Learning - learning rate of the critic
+LR_ACTOR = 5e-4         # Learning - learning rate of the actor
+LR_CRITIC = 5e-4        # Learning - learning rate of the critic
 BUFFER_SIZE = int(1e6)  # Replay Buffer - buffer size
-TAU = 7e-2              # Soft Update - target parameters
+TAU = 1e-3              # Soft Update - target parameters
 BATCH_SIZE = 128        # Batch Normalization - minibatch size
 OU_SIGMA = 0.2          # Exploration - Ornstein-Uhlenbeck noise parameter, volatility
 OU_THETA = 0.12         # Exploration - Ornstein-Uhlenbeck noise parameter, speed of mean reversion
-EPS_START = 5.5         # Exploration - initial value for epsilon in noise decay process in Agent.act()
-EPS_EP_END = 250        # Exploration - episode to end the noise decay process
-EPS_FINAL = 0           # Exploration - final value for epsilon after decay
+EPSILON = 1.0           # Exploration - initial value for epsilon in noise decay process in Agent.act()
+EPSILON_DECAY = 1e-6    # Exploration - decay rate for noise process
 ```
 
 ### Model architecture
@@ -47,5 +46,5 @@ Both the actor and critic networks have two fully connected hidden layers, the f
 <img src="plot.png" width="70%"/>
 
 ## Ideas for Future Work
-The MADDPG algorithm required many iterations with hyperparameter tweaking. This is because the programmed stochasticity seems to play a major role in success/failure of convergence in my implementation. Repeating the training process with an identical set of hyperparameters does not lead to the same result. In addition, even in in the successful hyperparameter set, the number of episodes required to solve the environment remains high (>1500). To address those issues, I would like to use the Prioritized Experience Replay in my future implementation. 
+The MADDPG algorithm required many iterations with hyperparameter tweaking. This is because the programmed stochasticity seems to play a major role in success/failure of convergence in my implementation. Repeating the training process with an identical set of hyperparameters does not lead to the same result. In addition, even in in the successful hyperparameter set, the number of episodes required to solve the environment remains high (>1000). To address those issues, I would like to use the Prioritized Experience Replay in my future implementation. 
 
