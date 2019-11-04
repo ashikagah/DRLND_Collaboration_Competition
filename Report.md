@@ -44,8 +44,8 @@ EPS_FINAL = 0           # Exploration - final value for epsilon after decay
 Both the actor and critic networks have two fully connected hidden layers, the first layer with 256 nodes and the second layer with 128 nodes. The actor network uses the tanh() activation function to limit all actions within the [-1, +1] range. When updating the critic network, it uses gradient clipping to place an upper limit on the size of the parameter updates.
 
 ## Plot of Rewards
-<img src="maddpg_plot.png" width="70%"/>
+<img src="plot.png" width="70%"/>
 
 ## Ideas for Future Work
-The MADDPG algorithm required many iterations with hyperparameter tweaking. This is because the programmed stochasticity seems to play a major role in success/failure of convergence in my implementation. Repeating the training process with identical set of hyperparameters does not lead to the same result. In addition, even in in the successful hyperparameter set, the number of episodes required to solve the environment remains high (>1500). To address those issues, I would like to use the Prioritized Experience Replay in my future implementation. 
+The MADDPG algorithm required many iterations with hyperparameter tweaking. This is because the programmed stochasticity seems to play a major role in success/failure of convergence in my implementation. Repeating the training process with an identical set of hyperparameters does not lead to the same result. In addition, even in in the successful hyperparameter set, the number of episodes required to solve the environment remains high (>1500). To address those issues, I would like to use the Prioritized Experience Replay in my future implementation. 
 
