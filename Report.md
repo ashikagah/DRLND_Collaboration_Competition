@@ -2,6 +2,13 @@
 
 <img src="tennis.png" width="70%" />
 
+## Goal
+- To build two deep reinforcement learning agents that continue to play tennis. 
+- A reward of +0.1 is provided if an agent hits the ball over the net. 
+- A negative reward of -0.01 is provided if an agent lets a ball hit the ground or hits the ball out of bounds.
+- At the end of each episode, the higher of the total scores of the two agents is recorded as the score of the episode
+- The environment is considered solved when an average score over 100 consecutive episodes reaches +0.5.
+
 ## 1. Learning Algorithm
 I implemented a Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm based on [Lowe et al.](https://arxiv.org/abs/1706.02275)
 
