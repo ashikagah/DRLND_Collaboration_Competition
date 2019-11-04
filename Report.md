@@ -47,5 +47,5 @@ Both the actor and critic networks have two fully connected hidden layers, the f
 <img src="maddpg_plot.png" width="70%"/>
 
 ## Ideas for Future Work
-The MADDPG algorithm required many iterations with hyperparameter tweaking. This is becasue stochasticity seems to play a major role in success/failure of convergence in my implementation. In addition, even in in the successful hyperparameter set, the number of episodes required to solve the environment remains high (>1500). To address those issues, I would like to implement Prioritized Experience Replay. 
+The MADDPG algorithm required many iterations with hyperparameter tweaking. This is because the programmed stochasticity seems to play a major role in success/failure of convergence in my implementation. Repeating the training process with identical set of hyperparameters does not lead to the same result. In addition, even in in the successful hyperparameter set, the number of episodes required to solve the environment remains high (>1500). To address those issues, I would like to use the Prioritized Experience Replay in my future implementation. 
 
