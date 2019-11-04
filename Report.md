@@ -43,6 +43,7 @@ EPSILON_DECAY = 1e-6    # Exploration - decay rate for noise process
 Both the actor and critic networks have two fully connected hidden layers, the first layer with 256 nodes and the second layer with 128 nodes. The actor network uses the tanh() activation function to limit all actions within the [-1, +1] range. When updating the critic network, it uses gradient clipping to place an upper limit on the size of the parameter updates.
 
 ## Plot of Rewards
+My implementation of the MADDPG algorithm required 1,314 episodes to solve the environment. 
 <img src="plot.png" width="70%"/>
 
 ## Ideas for Future Work
