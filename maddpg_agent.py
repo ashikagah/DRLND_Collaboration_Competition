@@ -12,16 +12,15 @@ import torch.optim as optim
 LEARN_EVERY = 1         # Learning - timestep interval
 LEARN_NUM = 1           # Learning - number of learning passes
 GAMMA = 0.99            # Learning - discount factor
-LR_ACTOR = 1e-3         # Learning - learning rate of the actor
-LR_CRITIC = 1e-3        # Learning - learning rate of the critic
+LR_ACTOR = 5e-4         # Learning - learning rate of the actor
+LR_CRITIC = 5e-4        # Learning - learning rate of the critic
 BUFFER_SIZE = int(1e6)  # Replay Buffer - buffer size
-TAU = 7e-2              # Soft Update - target parameters
+TAU = 1e-3              # Soft Update - target parameters
 BATCH_SIZE = 128        # Batch Normalization - minibatch size
 OU_SIGMA = 0.2          # Exploration - Ornstein-Uhlenbeck noise parameter, volatility
-OU_THETA = 0.12         # Exploration - Ornstein-Uhlenbeck noise parameter, speed of mean reversion
-EPS_START = 5.5         # Exploration - initial value for epsilon in noise decay process in Agent.act()
-EPS_EP_END = 250        # Exploration - episode to end the noise decay process
-EPS_FINAL = 0           # Exploration - final value for epsilon after decay
+OU_THETA = 0.15         # Exploration - Ornstein-Uhlenbeck noise parameter, speed of mean reversion
+EPSILON = 1.0           # Exploration - initial value for epsilon in noise decay process in Agent.act()
+EPSILON_DECAY = 1e-4    # Exploration - decay rate for noise process
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -42,8 +41,7 @@ class Agent():
         self.action_size = action_size
         self.num_agents = num_agents
         self.seed = random.seed(random_seed)
-        self.eps = EPS_START
-        self.eps_decay = 1/(EPS_EP_END*LEARN_NUM)  # set decay rate based on epsilon end target
+        self.epsilon = EPSILON
         self.timestep = 0
 
         # Actor Network (w/ Target Network)
@@ -86,7 +84,7 @@ class Agent():
         self.actor_local.train()
         # add noise to actions
         if add_noise:
-            actions += self.eps * self.noise.sample()
+            actions += self.epsilon * self.noise.sample()
         actions = np.clip(actions, -1, 1)
         return actions
 
@@ -146,8 +144,7 @@ class Agent():
         self.soft_update(self.actor_local, self.actor_target, TAU)
 
         # update noise decay parameter
-        self.eps -= self.eps_decay
-        self.eps = max(self.eps, EPS_FINAL)
+        self.epsilon -= EPSILON_DECAY
         self.noise.reset()
 
     def soft_update(self, local_model, target_model, tau):
