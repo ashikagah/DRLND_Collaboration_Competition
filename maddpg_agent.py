@@ -9,20 +9,19 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-BUFFER_SIZE = int(1e6)  # replay buffer size
-BATCH_SIZE = 128        # minibatch size
-LR_ACTOR = 1e-3         # learning rate of the actor
-LR_CRITIC = 1e-3        # learning rate of the critic
-WEIGHT_DECAY = 0        # L2 weight decay
-LEARN_EVERY = 1         # learning timestep interval
-LEARN_NUM = 1           # number of learning passes
-GAMMA = 0.99            # discount factor
-TAU = 7e-2              # for soft update of target parameters
-OU_SIGMA = 0.2          # Ornstein-Uhlenbeck noise parameter, volatility
-OU_THETA = 0.12         # Ornstein-Uhlenbeck noise parameter, speed of mean reversion
-EPS_START = 5.5         # initial value for epsilon in noise decay process in Agent.act()
-EPS_EP_END = 250        # episode to end the noise decay process
-EPS_FINAL = 0           # final value for epsilon after decay
+LEARN_EVERY = 1         # Learning - timestep interval
+LEARN_NUM = 1           # Learning - number of learning passes
+GAMMA = 0.99            # Learning - discount factor
+LR_ACTOR = 1e-3         # Learning - learning rate of the actor
+LR_CRITIC = 1e-3        # Learning - learning rate of the critic
+BUFFER_SIZE = int(1e6)  # Replay Buffer - buffer size
+TAU = 7e-2              # Soft Update - target parameters
+BATCH_SIZE = 128        # Batch Normalization - minibatch size
+OU_SIGMA = 0.2          # Exploration - Ornstein-Uhlenbeck noise parameter, volatility
+OU_THETA = 0.12         # Exploration - Ornstein-Uhlenbeck noise parameter, speed of mean reversion
+EPS_START = 5.5         # Exploration - initial value for epsilon in noise decay process in Agent.act()
+EPS_EP_END = 250        # Exploration - episode to end the noise decay process
+EPS_FINAL = 0           # Exploration - final value for epsilon after decay
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -55,7 +54,7 @@ class Agent():
         # Critic Network (w/ Target Network)
         self.critic_local = Critic(state_size, action_size, random_seed).to(device)
         self.critic_target = Critic(state_size, action_size, random_seed).to(device)
-        self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
+        self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC)
 
         # Noise process
         self.noise = OUNoise((num_agents, action_size), random_seed)
